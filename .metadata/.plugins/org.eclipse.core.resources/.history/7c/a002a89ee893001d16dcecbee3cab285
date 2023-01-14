@@ -1,0 +1,22 @@
+package com.service;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.exception.UserNameAlreadyExistException;
+import com.model.Student;
+
+public interface StudentService {
+
+	Student addStudent(Student student) throws UserNameAlreadyExistException ;
+	public List<Student> viewAllStudents() throws UserNameAlreadyExistException;
+	Student updateStudent(Student student) throws UserNameAlreadyExistException;
+	Student deleteEmployee(int id) throws UserNameAlreadyExistException;
+	Student viewStudentById(int id) throws UserNameAlreadyExistException;
+	Student updateStudentById(int id, Student student)throws UserNameAlreadyExistException;
+	
+	
+	
+	
+}

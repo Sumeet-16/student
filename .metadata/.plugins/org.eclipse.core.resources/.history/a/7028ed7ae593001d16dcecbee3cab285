@@ -1,0 +1,30 @@
+package com.model;
+
+import java.lang.annotation.Documented;
+
+@Documented
+public @interface PasswordValueMatch {
+
+}
+
+
+@Documented
+2
+@Constraint(validatedBy = PasswordConstraintValidator.class)
+3
+@Target({ TYPE, FIELD, ANNOTATION_TYPE })
+4
+@Retention(RUNTIME)
+5
+public @interface ValidPassword {
+6
+7
+    String message() default "Invalid Password";
+8
+9
+    Class<?>[] groups() default {};
+10
+11
+    Class<? extends Payload>[] payload() default {};
+12
+}

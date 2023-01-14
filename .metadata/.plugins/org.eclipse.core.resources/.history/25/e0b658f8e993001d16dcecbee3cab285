@@ -1,0 +1,11 @@
+package com.exception;
+
+public class UserNameAlreadyExistException extends Exception {
+	
+	public UserNameAlreadyExistException(String msg) {
+		// TODO Auto-generated constructor stub
+		super(msg);
+	}
+	
+
+}
