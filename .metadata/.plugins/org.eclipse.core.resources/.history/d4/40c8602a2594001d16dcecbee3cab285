@@ -1,0 +1,23 @@
+package com.repository;
+
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+
+import com.model.Student;
+@Repository
+public interface StudentRepo extends JpaRepository<Student, Integer> {
+	
+    //public Student findByGmail(String gmail);
+//	public Student findByUserName(String username);
+	@Query("select u from Student u WHERE u.gmail=?1 AND u.password=?2  AND u.username=?3 ")
+	Optional<Student> findByGmail(String gmail, String pwd,String username);
+	
+	
+
+	//Optional<Student> findByGmail(String gmail);
+	
+
+}

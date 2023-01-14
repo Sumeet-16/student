@@ -1,0 +1,27 @@
+package com.service;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.exception.StudentNotFoundException;
+
+import com.model.Student;
+
+import jakarta.validation.Valid;
+@Service
+public interface StudentService {
+
+	Student addStudent(Student student) throws StudentNotFoundException ;
+	public List<Student> viewAllStudents() throws StudentNotFoundException;
+	Student updateStudent(Student student) throws StudentNotFoundException;
+	Student deleteEmployee(int id) throws StudentNotFoundException;
+	Student viewStudentById(int id) throws StudentNotFoundException;
+	Student updateStudentById(int id, Student student)throws StudentNotFoundException;
+	List<Student> addStudents(List<Student> student)throws StudentNotFoundException;
+	Student loginStudent(@Valid Student student);
+	
+	
+	
+	
+}

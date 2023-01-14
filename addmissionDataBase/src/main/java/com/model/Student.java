@@ -2,11 +2,15 @@ package com.model;
 
 import java.util.Date;
 
-import io.micrometer.common.lang.NonNull;
+
+import jakarta.annotation.Nonnull;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.PreUpdate;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -26,7 +30,7 @@ public class Student {
 	private int id;
 	
 			
-	     @NonNull
+	     @Nonnull
 	     @NotBlank(message = "New password is mandatory")
 	private String pwd;
 	     @NotBlank(message = "New password is mandatory")
@@ -37,6 +41,14 @@ public class Student {
 
 	private String gmail;
 //	private Date currentDate=new Date(System.currentTimeMillis());
+//	     @Temporal(TemporalType.DATE)
+//	     private Date modified;
+	     private Date created = new Date();
+	     private Date updated = new Date();
+
+	     @PreUpdate
+	     public void setLastUpdate() {  this.updated = new Date(); }
+
 	     @NotBlank(message = "New username is mandatory")
 	private String username;
 	
@@ -82,14 +94,8 @@ public class Student {
 	public void setGmail(String gmail) {
 		this.gmail = gmail;
 	}
-//	public Date getCurrentDate() {
-//		return currentDate;
-//	}
-//	public void setCurrentDate(Date currentDate) {
-//		this.currentDate = currentDate;
-//	}
 	public Student(String name, String mobileno, int id, String pwd, String repwd, String gmail,
-			String username) {
+			String username,Date created,Date updated) {
 		super();
 		this.name = name;
 		this.mobileno = mobileno;
@@ -97,8 +103,25 @@ public class Student {
 		this.pwd = pwd;
 		this.repwd = repwd;
 		this.gmail = gmail;
-		
+		this.created=created;
+		this.updated=updated;
 		this.username = username;
+	}
+	
+	
+	
+	
+	public Date getCreated() {
+		return created;
+	}
+	public void setCreated(Date created) {
+		this.created = created;
+	}
+	public Date getUpdated() {
+		return updated;
+	}
+	public void setUpdated(Date updated) {
+		this.updated = updated;
 	}
 	public Student() {
 		super();
@@ -107,7 +130,9 @@ public class Student {
 	@Override
 	public String toString() {
 		return "Student [name=" + name + ", mobileno=" + mobileno + ", id=" + id + ", pwd=" + pwd + ", repwd=" + repwd
-				+ ", gmail=" + gmail + ", currentDate=" + ", username=" + username + "]";
+				+ ", gmail=" + gmail + ", created=" + created + ", updated=" + updated + ", username=" + username + "]";
 	}
+	
+	
 	
 }

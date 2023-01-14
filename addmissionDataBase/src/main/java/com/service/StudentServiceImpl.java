@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.exception.StudentNotFoundException;
@@ -120,4 +121,18 @@ public class StudentServiceImpl implements StudentService {
 	
 	
 }
+
+		@Override
+	public Boolean login(String gmail, String pwd) throws StudentNotFoundException {
+		Student student = repository.findByGmail(gmail, pwd)
+				.orElseThrow(() -> new StudentNotFoundException("Invalid User .."));
+		return student.getPwd().equals(pwd);
+	}
+
+	
+	
+
+	
+
+	
 }

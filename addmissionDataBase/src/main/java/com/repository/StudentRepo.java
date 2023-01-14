@@ -1,6 +1,9 @@
 package com.repository;
 
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import com.model.Student;
 
@@ -8,7 +11,12 @@ public interface StudentRepo extends JpaRepository<Student, Integer> {
 	
     //public Student findByGmail(String gmail);
 //	public Student findByUserName(String username);
+	@Query("select u from Student u WHERE u.gmail=?1 AND u.pwd=?2")
+	Optional<Student> findByGmail(String gmail, String pwd);
+	
+	
 
+	Optional<Student> findByGmail(String gmail);
 	
 
 }
